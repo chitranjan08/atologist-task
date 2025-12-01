@@ -21,7 +21,6 @@ export class CreateGameDto {
   @IsNotEmpty({ message: 'platform must be provided and non-empty' })
   platform: string;
 
-  // Accept numeric or numeric-string, transform to number
   @Transform(({ value }) => {
     if (value === undefined || value === null || value === '') return value;
     return typeof value === 'string' ? parseFloat(value) : value;
@@ -38,7 +37,6 @@ export class CreateGameDto {
   @IsNotEmpty({ message: 'genre must be provided and non-empty' })
   genre: string;
 
-  // Must be 'Y' or 'N'
   @IsString()
   @IsIn(['Y', 'N'], { message: "editors_choice must be either 'Y' or 'N'" })
   editors_choice: 'Y' | 'N';

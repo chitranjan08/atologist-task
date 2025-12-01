@@ -35,10 +35,8 @@ async update(id: number, dto: Partial<CreateGameDto> | Partial<UpdateGameDto>) {
     throw new NotFoundException(`Game with id ${id} not found`);
   }
 
-  // merge only supplied fields
   const updated = this.gamesRepo.merge(game, dto as any);
 
-  // Save and return the updated entity
   return this.gamesRepo.save(updated);
 }
 async findAllFiltered(opts: {
@@ -84,7 +82,6 @@ async remove(id: number) {
     throw new NotFoundException(`Game with id ${id} not found`);
   }
 
-  // Hard delete:
   await this.gamesRepo.delete(id);
 
   return { message: `Game with id ${id} deleted` };

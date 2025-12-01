@@ -18,7 +18,6 @@ import { JwtStrategy } from './strategies/jwt.strategy';
         const expiresIn = configService.get<string>('JWT_ACCESS_TOKEN_EXPIRATION') || '15m';
         return {
           secret: configService.get<string>('JWT_ACCESS_TOKEN_SECRET'),
-          // cast to any so the typing mismatch is resolved (accepts string | number)
           signOptions: {
             expiresIn: expiresIn as any,
           },

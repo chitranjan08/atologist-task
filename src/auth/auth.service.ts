@@ -45,7 +45,6 @@ export class AuthService {
 
     const accessToken = await this.jwtService.signAsync(payload as any, {
       secret: this.configService.get<string>('JWT_ACCESS_TOKEN_SECRET'),
-      // cast to any so TS accepts string durations like '15m'
       expiresIn: accessExpiresIn as any,
     });
 
@@ -62,7 +61,6 @@ export class AuthService {
     if (!user) throw new UnauthorizedException('Invalid credentials');
 
     const tokens = await this.getTokens(user.id, user.email);
-    // hash refresh token before saving to DB
     const hashedRefreshToken = await this.hashData(tokens.refresh_token);
     await this.usersService.setCurrentRefreshToken(hashedRefreshToken, user.id);
 
@@ -73,7 +71,6 @@ export class AuthService {
   }
 
   async logout(userId: number) {
-    // remove stored refresh token
     await this.usersService.removeRefreshToken(userId);
   }
 

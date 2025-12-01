@@ -10,7 +10,7 @@ export class User {
   email: string;
 
   @Column()
-  password: string; // hashed
+  password: string; 
 
   @Column({ nullable: true })
   firstName?: string;
@@ -18,7 +18,6 @@ export class User {
   @Column({ nullable: true })
   lastName?: string;
 
-  // hashed refresh token (so we can revoke)
  @Column({ nullable: true, name: 'refresh_token', type: 'varchar' })
   refreshToken: string | null;
 }

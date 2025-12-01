@@ -10,12 +10,10 @@ export class QueryGamesDto {
   @IsString()
   genre?: string;
 
-  // must be 'Y' or 'N' if provided
   @IsOptional()
   @IsIn(['Y', 'N'], { message: "editors_choice must be 'Y' or 'N'" })
   editors_choice?: 'Y' | 'N';
 
-  // optional sort order for score: 'asc' or 'desc'
   @IsOptional()
   @IsIn(['asc', 'desc'], { message: "sort must be either 'asc' or 'desc'" })
   sort?: 'asc' | 'desc';
